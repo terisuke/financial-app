@@ -1,36 +1,139 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📘 経営改善計画支援ツール フロントエンド要件定義（MVP + DX将来拡張）
 
-## Getting Started
+---
 
-First, run the development server:
+## 🎯 目的・コンセプト
+
+本ツールは、中小企業の経営改善計画を支援するための**財務分析・戦略立案・アクションプラン提示**を行うWebアプリケーションです。  
+初期段階では Excel ファイルによる分析に対応し、将来的にはWebフォームによる入力にも対応することで、**DX対応・SaaS化を可能にします**。
+
+---
+
+## 🏗️ 技術スタック
+
+| 分類      | 使用技術                   |
+|-----------|----------------------------|
+| フレームワーク   | Next.js（App Router）        |
+| UIコンポーネント | Shadcn UI（Tailwind CSSベース） |
+| 状態管理  | 特になし（画面内で完結）         |
+| モックデータ    | 固定JSON、faker.jsなど        |
+| バックエンド    | Supabase（将来的な連携）      |
+
+---
+
+## 📄 画面構成
+
+### `/` トップページ
+- サービス概要表示
+- 「はじめる」ボタン → `/dashboard` へ遷移
+
+### `/dashboard` ダッシュボード
+- ファイル一覧（モック表示）
+- 「ファイルをアップロード」→ `/upload`
+- 「手入力で開始」→ `/form`
+
+### `/upload` 経営改善計画ファイルアップロード
+- ファイル選択 (`.xlsx`想定)
+- アップロードボタン（実処理不要、`/analysis`に遷移）
+
+### `/analysis` 分析結果表示
+- SWOT分析（Shadcn `Card` ×4）
+- 異常値検出（表形式）
+- 業界ベンチマーク比較（表）
+- 「アクションプランを見る」ボタン → `/action-plan`
+
+### `/action-plan` アクションプラン提示
+- Step形式で施策を表示（例：販管費見直し → 財務改善 → KPI設定）
+- 各施策に説明・KPI・重要度（Badge）付き表示
+
+### `/form` 経営計画手入力フォーム（DX用）
+- 会社情報（会社名・業種など）
+- 財務データ（売上・利益など3期分）
+- SWOT（Textarea 4つ）
+- 施策リスト（Accordion＋詳細入力）
+- 「保存して分析へ」ボタン → `/analysis`
+
+---
+
+## 💬 ユーザー体験フロー
+
+	1.	/ → [はじめる] → /dashboard
+	2.	/dashboard → [ファイルアップロード] → /upload → /analysis
+└→ [手入力で開始] → /form → /analysis
+	3.	/analysis → [アクションプランを見る] → /action-plan
+
+---
+
+## 🎨 デザイン方針
+
+- Shadcn UIを活用して最低限整ったUIを実現
+- Card、Table、Accordion、Badgeを中心に構成
+- モバイル対応は不要（PC優先）
+- テキストや数値は固定データでOK（動的API不要）
+
+---
+
+## 🚫 スコープ外（今回含めないもの）
+
+- DB接続・保存・ログイン認証（将来的にSupabaseで実装予定）
+- 実ファイル解析（アップロードは仮実装）
+- API連携やサーバー処理（将来的にSupabaseで実装予定）
+- 本番デプロイ（ローカル or 開発環境でOK）
+
+---
+
+## ✅ 拡張性の観点（今後の発展に向けて）
+
+- `/form` を入口としたDB化・SaaS化が可能（Supabase連携）
+- KPI・シミュレーション機能拡張への布石
+- エンジンをAPI化することでAI活用を容易に追加できる構造
+- Supabaseによる認証・データベース機能の統合
+
+---
+
+## 🧩 想定ユースケース
+
+- 経営者・顧問税理士がExcel経営改善計画を可視化したいとき
+- 金融機関提出用の財務分析資料を整える前の下書き作成支援
+- デジタル管理に移行したい企業へのSaaS提供
+
+---
+
+## 🧪 動作確認方法（ローカル）
 
 ```bash
+git clone https://your-repo-url
+cd your-project
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔄 Supabase連携計画
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+将来的に以下の機能をSupabaseで実装予定：
 
-## Learn More
+1. **認証機能**
+   - ユーザー登録・ログイン
+   - ソーシャルログイン（Google, GitHub等）
 
-To learn more about Next.js, take a look at the following resources:
+2. **データベース機能**
+   - 経営計画データの保存
+   - 分析結果の履歴管理
+   - ユーザーごとのデータ分離
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **ストレージ機能**
+   - Excelファイルのアップロード・保存
+   - 分析レポートのPDF出力・保存
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **リアルタイム機能**
+   - 複数ユーザー間でのデータ共有
+   - コラボレーション機能
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+📝 補足
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+このREADMEはMVPのUIモックを指示・設計するための要件定義です。
+設計上のご質問がある場合は、PMまたは設計者までご連絡ください。
