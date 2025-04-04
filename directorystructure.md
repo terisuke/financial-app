@@ -12,18 +12,22 @@
 │   │   ├── ui/                   # 基本UI（button, card等）
 │   │   └── layout/               # レイアウト関連
 │   ├── hooks/                    # カスタムフック
-│   │   └── use-supabase.ts       # Supabase連携用フック（将来的に実装）
+│   │   └── use-supabase.ts       # Supabase連携用フック
 │   ├── lib/                      # ユーティリティ
 │   │   ├── api/                  # API関連処理
 │   │   │   ├── client.ts         # 変更禁止: AIモデル設定
 │   │   │   ├── types.ts          # 変更禁止: 型定義
 │   │   │   └── config.ts         # 変更禁止: 環境設定
-│   │   ├── supabase/             # Supabase関連処理（将来的に実装）
+│   │   ├── supabase/             # Supabase関連処理
 │   │   │   ├── client.ts         # Supabaseクライアント
 │   │   │   ├── auth.ts           # 認証関連
 │   │   │   ├── db.ts             # データベース操作
-│   │   │   └── storage.ts        # ストレージ操作
+│   │   │   ├── storage.ts        # ストレージ操作
+│   │   │   ├── realtime.ts       # リアルタイム機能
+│   │   │   └── types.ts          # Supabase型定義
 │   │   └── utils/                # 共通関数
+│   │       ├── financial.ts      # 財務計算ユーティリティ
+│   │       └── excel.ts          # Excel変換ユーティリティ
 │   ├── styles/                   # スタイル定義
 │   ├── favicon.ico               # ファビコン
 │   ├── globals.css               # グローバルスタイル
@@ -61,3 +65,5 @@
 - API関連処理 → `app/lib/api/`
 - ページコンポーネント → `app/[page-name]/page.tsx`
 - Supabase関連処理 → `app/lib/supabase/`
+- 財務計算処理 → `app/lib/utils/financial.ts`
+- Excel変換処理 → `app/lib/utils/excel.ts`

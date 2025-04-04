@@ -16,10 +16,12 @@
 - tailwind-merge: ^3.1.0
 - tw-animate-css: ^1.2.5
 
-## バックエンド（将来的に実装）
+## バックエンド（Supabase統合）
 - Supabase: ^2.39.0
 - @supabase/supabase-js: ^2.39.0
 - @supabase/auth-helpers-nextjs: ^0.9.0
+- @supabase/storage-js: ^1.10.0
+- @supabase/realtime-js: ^2.9.0
 
 ## 開発ツール
 - npm: ^10.0.0
@@ -48,3 +50,4 @@
 - 型定義は必ず types.ts を参照
 - 環境変数の利用は config.ts 経由のみ許可
 - Supabase関連の処理は `app/lib/supabase/` ディレクトリに集約
+- 既存のSupabaseスキーマ（profiles, companies, user_companies, transactions）との整合性を維持
