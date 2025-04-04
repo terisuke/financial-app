@@ -43,6 +43,23 @@
 │   │   └── page.tsx
 │   └── form/                     # 経営計画手入力フォームページ
 │       └── page.tsx
+├── __tests__/                    # テストディレクトリ
+│   ├── components/               # コンポーネントテスト
+│   │   └── ui/                   # UIコンポーネントテスト
+│   ├── hooks/                    # フックテスト
+│   │   └── use-supabase.test.ts  # Supabaseフックテスト
+│   ├── lib/                      # ユーティリティテスト
+│   │   ├── api/                  # API関連テスト
+│   │   ├── supabase/             # Supabase関連テスト
+│   │   └── utils/                # ユーティリティ関数テスト
+│   │       ├── financial.test.ts # 財務計算テスト
+│   │       └── excel.test.ts     # Excel変換テスト
+│   └── e2e/                      # エンドツーエンドテスト
+│       ├── dashboard.spec.ts     # ダッシュボードテスト
+│       ├── upload.spec.ts        # アップロードテスト
+│       ├── analysis.spec.ts      # 分析テスト
+│       ├── action-plan.spec.ts   # アクションプランテスト
+│       └── form.spec.ts          # フォームテスト
 ├── public/                       # 静的ファイル
 ├── node_modules/                 # 依存パッケージ
 ├── .git/                         # Gitリポジトリ
@@ -54,6 +71,8 @@
 ├── next.config.js                # Next.js設定
 ├── postcss.config.mjs            # PostCSS設定
 ├── eslint.config.mjs             # ESLint設定
+├── jest.config.js                # Jest設定
+├── cypress.config.ts             # Cypress設定
 ├── .env.local                    # 環境変数（Supabase接続情報など）
 └── .gitignore                    # Git除外設定
 ```
@@ -67,3 +86,7 @@
 - Supabase関連処理 → `app/lib/supabase/`
 - 財務計算処理 → `app/lib/utils/financial.ts`
 - Excel変換処理 → `app/lib/utils/excel.ts`
+- コンポーネントテスト → `__tests__/components/`
+- フックテスト → `__tests__/hooks/`
+- ユーティリティテスト → `__tests__/lib/`
+- E2Eテスト → `__tests__/e2e/`

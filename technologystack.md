@@ -23,6 +23,17 @@
 - @supabase/storage-js: ^1.10.0
 - @supabase/realtime-js: ^2.9.0
 
+## テスト
+- Jest: ^29.7.0
+- React Testing Library: ^14.2.1
+- Cypress: ^13.6.0
+- MSW (Mock Service Worker): ^2.2.0
+- @testing-library/jest-dom: ^6.4.2
+- @testing-library/user-event: ^14.5.2
+- @testing-library/react: ^14.2.1
+- jest-environment-jsdom: ^29.7.0
+- @types/jest: ^29.5.12
+
 ## 開発ツール
 - npm: ^10.0.0
 - ESLint: ^9.0.0
@@ -51,3 +62,4 @@
 - 環境変数の利用は config.ts 経由のみ許可
 - Supabase関連の処理は `app/lib/supabase/` ディレクトリに集約
 - 既存のSupabaseスキーマ（profiles, companies, user_companies, transactions）との整合性を維持
+- テストは `__tests__/` ディレクトリに配置し、対象ファイルと同じ構造を維持
